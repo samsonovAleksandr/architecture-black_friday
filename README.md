@@ -1,35 +1,15 @@
-# pymongo-api
 
-## Как запустить
-
-Запускаем mongodb и приложение
+## Запуск финального стенда
 
 ```shell
+cd sharding-repl-cache
 docker compose up -d
+docker compose exec -T mongos mongosh --nodb --quiet --file /scripts/init-sharding.js
 ```
 
-Заполняем mongodb данными
+## Проверка
 
-```shell
-./scripts/mongo-init.sh
-```
+Откройте [JSON состояния API](http://127.0.0.1:8080/). Поле `collections.helloDoc.documents_count` показывает общее число документов, `documents_by_shard` в той же коллекции — распределение по шардам. В `replica_members_by_shard` ожидается по три участника, в `cache_enabled` — `true`.
 
-## Как проверить
+Дважды запросите [список пользователей](http://127.0.0.1:8080/helloDoc/users) в течение 60 секунд. Первый запрос при пустом кеше читает MongoDB, повторный получает список из Redis. [Команды измерения времени](sharding-repl-cache/README.md).
 
-### Если вы запускаете проект на локальной машине
-
-Откройте в браузере http://localhost:8080
-
-### Если вы запускаете проект на предоставленной виртуальной машине
-
-Узнать белый ip виртуальной машины
-
-```shell
-curl --silent http://ifconfig.me
-```
-
-Откройте в браузере http://<ip виртуальной машины>:8080
-
-## Доступные эндпоинты
-
-Список доступных эндпоинтов, swagger http://<ip виртуальной машины>:8080/docs

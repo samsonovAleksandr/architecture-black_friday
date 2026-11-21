@@ -1,0 +1,105 @@
+name: mongo-sharding-repl
+
+x-mongodb: &mongodb
+  image: mongo:8.0
+
+x-config-server: &config-server
+  <<: *mongodb
+  command: [mongod, --configsvr, --replSet, configRS, --bind_ip_all]
+
+x-shard1: &shard1
+  <<: *mongodb
+  command: [mongod, --shardsvr, --replSet, shard1RS, --bind_ip_all]
+
+x-shard2: &shard2
+  <<: *mongodb
+  command: [mongod, --shardsvr, --replSet, shard2RS, --bind_ip_all]
+
+services:
+  configsrv1:
+    <<: *config-server
+    volumes:
+      - configsrv1-data:/data/configdb
+
+  configsrv2:
+    <<: *config-server
+    volumes:
+      - configsrv2-data:/data/configdb
+
+  configsrv3:
+    <<: *config-server
+    volumes:
+      - configsrv3-data:/data/configdb
+
+  shard1-1:
+    <<: *shard1
+    volumes:
+      - shard1-1-data:/data/db
+
+  shard1-2:
+    <<: *shard1
+    volumes:
+      - shard1-2-data:/data/db
+
+  shard1-3:
+    <<: *shard1
+    volumes:
+      - shard1-3-data:/data/db
+
+  shard2-1:
+    <<: *shard2
+    volumes:
+      - shard2-1-data:/data/db
+
+  shard2-2:
+    <<: *shard2
+    volumes:
+      - shard2-2-data:/data/db
+
+  shard2-3:
+    <<: *shard2
+    volumes:
+      - shard2-3-data:/data/db
+
+  mongos:
+    <<: *mongodb
+    command:
+      - mongos
+      - --configdb
+      - configRS/configsrv1:27019,configsrv2:27019,configsrv3:27019
+      - --bind_ip_all
+    depends_on:
+      - configsrv1
+      - configsrv2
+      - configsrv3
+      - shard1-1
+      - shard1-2
+      - shard1-3
+      - shard2-1
+      - shard2-2
+      - shard2-3
+    volumes:
+      - ./scripts/init-sharding.js:/scripts/init-sharding.js:ro
+
+  pymongo_api:
+    image: kazhem/pymongo_api:1.0.0
+    depends_on:
+      - mongos
+    ports:
+      - "127.0.0.1:${MONGO_SHARDING_PORT:-8080}:8080"
+    environment:
+      MONGODB_URL: mongodb://mongos:27017/?serverSelectionTimeoutMS=5000
+      MONGODB_DATABASE_NAME: somedb
+    volumes:
+      - ./api_app/app.py:/app/app.py:ro
+
+volumes:
+  configsrv1-data:
+  configsrv2-data:
+  configsrv3-data:
+  shard1-1-data:
+  shard1-2-data:
+  shard1-3-data:
+  shard2-1-data:
+  shard2-2-data:
+  shard2-3-data:
