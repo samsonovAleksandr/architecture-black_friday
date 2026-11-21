@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" pages="4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36">
   <diagram id="phase-3" name="03 Кеширование">
-    <mxGraphModel dx="2186" dy="1384" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1814" dy="1149" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,28 +10,28 @@
         <mxCell id="intro" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;fontSize=15;" value="Приложение кеширует результаты чтения, чтобы уменьшить число запросов к MongoDB." vertex="1">
           <mxGeometry height="30" width="1010" x="65" y="77" as="geometry" />
         </mxCell>
-        <mxCell id="api" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#E8F0FD;strokeColor=#567CB5;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;pymongo-api&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;FastAPI · :8080&lt;/span&gt;" vertex="1">
+        <mxCell id="api" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#E8F0FD;strokeColor=#567CB5;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;pymongo-api&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;FastAPI · :8080&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="162" x="65" y="350" as="geometry" />
         </mxCell>
         <mxCell id="api-router" edge="1" parent="1" source="api" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=block;endFill=1;strokeColor=#385478;strokeWidth=1.6;exitX=1;exitY=0.5;entryX=0;entryY=0.5857142857142857;fontSize=12;labelBackgroundColor=#FFFFFF;" target="39MX-a-J4r4PGT7Ql6c8-13" value="Промах / запись">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="redis" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FDEEF0;strokeColor=#C16373;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;redis&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Redis · :6379&lt;/span&gt;" vertex="1">
+        <mxCell id="redis" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FDEEF0;strokeColor=#C16373;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;redis&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;Redis · :6379&lt;/span&gt;" vertex="1">
           <mxGeometry height="68" width="162" x="65" y="513" as="geometry" />
         </mxCell>
         <mxCell id="api-redis" edge="1" parent="1" source="api" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=block;endFill=1;strokeColor=#A43F55;strokeWidth=1.6;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=12;labelBackgroundColor=#FFFFFF;startArrow=block;startFill=1;" target="redis" value="Чтение / заполнение кеша">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="configRS" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;rounded=1;arcSize=10;strokeWidth=1.5;fillColor=#EAF6EF;strokeColor=#70A287;verticalAlign=top;align=left;spacingLeft=17;spacingTop=9;fontSize=16;collapsible=0;" value="&lt;b&gt;Серверы конфигурации · configRS&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Метаданные кластера&lt;/span&gt;" vertex="1">
+        <mxCell id="configRS" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;rounded=1;arcSize=10;strokeWidth=1.5;fillColor=#EAF6EF;strokeColor=#70A287;verticalAlign=top;align=left;spacingLeft=17;spacingTop=9;fontSize=16;collapsible=0;" value="&lt;b&gt;Серверы конфигурации · configRS&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="153" width="425" x="655" y="124" as="geometry" />
         </mxCell>
-        <mxCell id="configSrv-1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-1&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Primary&lt;/span&gt;" vertex="1">
+        <mxCell id="configSrv-1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-1&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;Primary&lt;/span&gt;" vertex="1">
           <mxGeometry height="67" width="109" x="677" y="183" as="geometry" />
         </mxCell>
-        <mxCell id="configSrv-2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-2&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Secondary&lt;/span&gt;" vertex="1">
+        <mxCell id="configSrv-2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-2&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="67" width="109" x="813" y="183" as="geometry" />
         </mxCell>
-        <mxCell id="configSrv-3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-3&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Secondary&lt;/span&gt;" vertex="1">
+        <mxCell id="configSrv-3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;configSrv-3&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="67" width="109" x="949" y="183" as="geometry" />
         </mxCell>
         <mxCell id="config-replicate-2" edge="1" parent="1" source="configSrv-1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=block;endFill=1;strokeColor=#526985;strokeWidth=1.6;exitX=1;exitY=0.65;entryX=0;entryY=0.65;fontSize=12;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=5 4;" target="configSrv-2" value="">
@@ -49,7 +48,7 @@
         <mxCell id="39MX-a-J4r4PGT7Ql6c8-1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;rounded=1;arcSize=10;strokeWidth=1.5;fillColor=#EAF6EF;strokeColor=#70A287;verticalAlign=top;align=left;spacingLeft=17;spacingTop=9;fontSize=16;collapsible=0;" value="&lt;b&gt;Шард 1&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="153" width="425" x="655" y="310" as="geometry" />
         </mxCell>
-        <mxCell id="39MX-a-J4r4PGT7Ql6c8-2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard1-1&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;shardSrv · Primary&lt;/span&gt;" vertex="1">
+        <mxCell id="39MX-a-J4r4PGT7Ql6c8-2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard1-1&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;shardSrv · Primary&lt;/span&gt;" vertex="1">
           <mxGeometry height="67" width="109" x="677" y="369" as="geometry" />
         </mxCell>
         <mxCell id="39MX-a-J4r4PGT7Ql6c8-3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard1-2&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
@@ -72,7 +71,7 @@
         <mxCell id="39MX-a-J4r4PGT7Ql6c8-7" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;rounded=1;arcSize=10;strokeWidth=1.5;fillColor=#EAF6EF;strokeColor=#70A287;verticalAlign=top;align=left;spacingLeft=17;spacingTop=9;fontSize=16;collapsible=0;" value="&lt;b&gt;Шард 2&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="153" width="425" x="655" y="496" as="geometry" />
         </mxCell>
-        <mxCell id="39MX-a-J4r4PGT7Ql6c8-8" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard2-1&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;shardSrv · Primary&lt;/span&gt;" vertex="1">
+        <mxCell id="39MX-a-J4r4PGT7Ql6c8-8" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard2-1&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;shardSrv · Primary&lt;/span&gt;" vertex="1">
           <mxGeometry height="67" width="109" x="677" y="555" as="geometry" />
         </mxCell>
         <mxCell id="39MX-a-J4r4PGT7Ql6c8-9" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#FFFFFF;strokeColor=#6984A3;strokeWidth=1.5;fontSize=15;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=11;" value="&lt;b&gt;shard2-2&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
@@ -92,7 +91,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="39MX-a-J4r4PGT7Ql6c8-13" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#E8F0FD;strokeColor=#567CB5;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;mongos&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:12px'&gt;Маршрутизатор · :27017&lt;/span&gt;" vertex="1">
+        <mxCell id="39MX-a-J4r4PGT7Ql6c8-13" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;fillColor=#E8F0FD;strokeColor=#567CB5;strokeWidth=1.5;fontSize=15;rounded=1;arcSize=12;" value="&lt;b&gt;mongos&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;font-size:12px&#39;&gt;Маршрутизатор · :27017&lt;/span&gt;" vertex="1">
           <mxGeometry height="70" width="164" x="340" y="344" as="geometry" />
         </mxCell>
         <mxCell id="router-config" edge="1" parent="1" source="39MX-a-J4r4PGT7Ql6c8-13" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontColor=#172B4D;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=block;endFill=1;strokeColor=#385478;strokeWidth=1.6;exitX=1;exitY=0.2;entryX=0;entryY=0.6013071895424836;fontSize=12;labelBackgroundColor=#FFFFFF;" target="configRS" value="Метаданные">

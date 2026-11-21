@@ -8,10 +8,7 @@
 cd sharding-repl-cache
 docker compose up -d
 docker compose exec -T mongos mongosh --nodb --quiet --file /scripts/init-sharding.js
-docker compose ps
 ```
-
-Скрипт настраивает три сервера конфигурации, два шарда по три узла и загружает 1000 документов в `somedb.helloDoc`. Повторная инициализация сохраняет тестовые записи без дубликатов. API использует образ `kazhem/pymongo_api:1.0.0`.
 
 ## Проверка
 
