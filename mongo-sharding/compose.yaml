@@ -1,0 +1,70 @@
+name: mongo-sharding
+
+x-mongodb: &mongodb
+  image: mongo:8.0
+
+x-config-server: &config-server
+  <<: *mongodb
+  command: [mongod, --configsvr, --replSet, configRS, --bind_ip_all]
+
+services:
+  configsrv1:
+    <<: *config-server
+    volumes:
+      - configsrv1-data:/data/configdb
+
+  configsrv2:
+    <<: *config-server
+    volumes:
+      - configsrv2-data:/data/configdb
+
+  configsrv3:
+    <<: *config-server
+    volumes:
+      - configsrv3-data:/data/configdb
+
+  shard1:
+    <<: *mongodb
+    command: [mongod, --shardsvr, --replSet, shard1RS, --bind_ip_all]
+    volumes:
+      - shard1-data:/data/db
+
+  shard2:
+    <<: *mongodb
+    command: [mongod, --shardsvr, --replSet, shard2RS, --bind_ip_all]
+    volumes:
+      - shard2-data:/data/db
+
+  mongos:
+    <<: *mongodb
+    command:
+      - mongos
+      - --configdb
+      - configRS/configsrv1:27019,configsrv2:27019,configsrv3:27019
+      - --bind_ip_all
+    depends_on:
+      - configsrv1
+      - configsrv2
+      - configsrv3
+      - shard1
+      - shard2
+    volumes:
+      - ./scripts/init-sharding.js:/scripts/init-sharding.js:ro
+
+  pymongo_api:
+    build:
+      context: api_app
+    depends_on:
+      - mongos
+    ports:
+      - "127.0.0.1:${MONGO_SHARDING_PORT:-8081}:8080"
+    environment:
+      MONGODB_URL: mongodb://mongos:27017/?serverSelectionTimeoutMS=5000
+      MONGODB_DATABASE_NAME: somedb
+
+volumes:
+  configsrv1-data:
+  configsrv2-data:
+  configsrv3-data:
+  shard1-data:
+  shard2-data:
