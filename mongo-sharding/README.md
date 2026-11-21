@@ -4,8 +4,6 @@
 
 ## Запуск и инициализация
 
-Выполните команды из корня репозитория. Они подходят для Bash и PowerShell.
-
 ```shell
 cd mongo-sharding
 docker compose up -d --build
@@ -18,13 +16,9 @@ docker compose exec -T mongos mongosh --nodb --quiet --file /scripts/init-shardi
 
 На [главной странице API](http://localhost:8080/) поле `collections.helloDoc.documents_count` показывает общий счётчик, а `collections.helloDoc.documents_by_shard` показывает количество документов на каждом шарде. После первой загрузки общий счётчик равен 1000, сумма счётчиков шардов совпадает с общим числом и оба шарда содержат документы. Swagger доступен по адресу [localhost:8080/docs](http://localhost:8080/docs).
 
-Если исходный проект занимает порт `8080`, остановите его командой `docker compose stop` из корня репозитория. Чтобы запустить оба проекта одновременно, задайте для `mongo-sharding` свободный порт через переменную `MONGO_SHARDING_PORT`.
-
-Проверить распределение напрямую можно из каждого контейнера. У `mongos` порт `27017`, у шардов `27018`, у серверов конфигурации `27019`.
+У `mongos` порт `27017`, у шардов `27018`, у серверов конфигурации `27019`.
 
 ```shell
 docker compose exec -T shard1 mongosh --port 27018 --quiet somedb --eval "db.helloDoc.countDocuments({})"
 docker compose exec -T shard2 mongosh --port 27018 --quiet somedb --eval "db.helloDoc.countDocuments({})"
 ```
-
-Чтобы остановить проект и сохранить данные в томах, выполните `docker compose down`.

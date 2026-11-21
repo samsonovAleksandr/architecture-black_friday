@@ -4,8 +4,6 @@
 
 ## Запуск и инициализация
 
-Выполните команды из корня репозитория. Они подходят для Bash и PowerShell.
-
 ```shell
 cd sharding-repl-cache
 docker compose up -d
@@ -18,14 +16,10 @@ docker compose exec -T mongos mongosh --nodb --quiet --file /scripts/init-shardi
 
 [Главная страница API](http://127.0.0.1:8080/) возвращает общий счётчик в `collections.helloDoc.documents_count`, разбивку по шардам в `collections.helloDoc.documents_by_shard`, число участников каждой группы в `replica_members_by_shard` и `cache_enabled: true`. После первой загрузки ожидается 1000 документов суммарно и по три участника в каждом шарде.
 
-Если порт `8080` занят предыдущим стендом, остановите его из его директории командой `docker compose stop`.
-
-Проверьте контейнеры и сделайте два запроса подряд. Первый запрос заполняет кеш, второй должен занять меньше `0.1` секунды. В PowerShell используйте `curl.exe` и `-o NUL`.
+При пустом кеше первый запрос загружает данные из MongoDB. Ожидаемое время повторного запроса — менее 100 мс. В PowerShell используйте `curl.exe` и `-o NUL`.
 
 ```shell
 docker compose ps
 curl -fsS -o /dev/null -w "%{time_total}\n" http://127.0.0.1:8080/helloDoc/users
 curl -fsS -o /dev/null -w "%{time_total}\n" http://127.0.0.1:8080/helloDoc/users
 ```
-
-Чтобы остановить проект и сохранить данные в томах, выполните `docker compose stop`.
